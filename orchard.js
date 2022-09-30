@@ -50,9 +50,25 @@ const pinkPrice = .55
 */
 
 // CODE HERE
-totalAcres
+let totalAcres = 0, totalFuji = 0, totalGala = 0, totalPink = 0
 
+for (let i = 0; i < fujiAcres.length; i++) {
+    totalFuji += fujiAcres[i];
+}
+//console.log(totalFuji)
 
+for (let i = 0; i < galaAcres.length; i++) {
+    totalGala += galaAcres[i];
+}
+//console.log(totalGala)
+
+for (let i = 0; i < pinkAcres.length; i++) {
+    totalPink += pinkAcres[i];
+}
+//console.log(totalPink)
+
+totalAcres = totalFuji + totalGala + totalPink
+console.log("The total number of harvested acres is " + totalAcres)
 
 
 // PROBLEM 2
@@ -68,9 +84,19 @@ totalAcres
 */
 
 // CODE HERE
+let averageDailyAcres = totalAcres / 7
+console.log("The total average number of acres harvested per day is " + averageDailyAcres)
 
+//I wasn't sure if you meant to calculate the average number of acres harvested each day or to just divide the total acres / 7 and get that version of the average so I went ahead and calculated what each day's average was and put it in the averageAcresPerDay array.
 
+let averageAcresPerDay = []
+let dailyAverage = 0
 
+for (let i = 0; i < fujiAcres.length; i++) {
+    dailyAverage = (fujiAcres[i] + galaAcres[i] + pinkAcres[i]) / 3
+    averageAcresPerDay.push(dailyAverage)
+}
+console.log("This array shows each day's individual average number of acres picked across the three fields: " + averageAcresPerDay)
 
 
 // PROBLEM 3
@@ -106,7 +132,11 @@ let acresLeft = 174
 let days = 0
 
 // CODE HERE
-
+while (acresLeft > 0) {
+    acresLeft -= dailyAverage;
+    days++
+}
+console.log("There are this many days of work left: " + days)
 
 
 // PROBLEM 4
@@ -135,11 +165,14 @@ let days = 0
 
 // CODE HERE
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
+//I just learned how to use the array.map function so I used it here to get the answer and it was a lot easier, but I understand how to loop the old arrays and push them into a new array.
+let fujiTons = fujiAcres.map((e, i, a) => e * 6.5)
+let galaTons = galaAcres.map((e, i, a) => e * 6.5)
+let pinkTons = pinkAcres.map((e, i, a) => e * 6.5)
 
-
+console.log("Fuji tons is " + fujiTons)
+console.log("Gala tons is  " + galaTons)
+console.log("Pink tons is  " + pinkTons)
 
 
 
@@ -162,13 +195,23 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
+let fujiPounds = 0
+let galaPounds = 0
+let pinkPounds = 0
 
+for (let i = 0; i < fujiTons.length; i++) {
+    fujiPounds = fujiTons[i] * 2000;
+}
+for (let i = 0; i < galaTons.length; i++) {
+    galaPounds = galaTons[i] * 2000;
+}
+for (let i = 0; i < pinkTons.length; i++) {
+    pinkPounds = pinkTons[i] * 2000;
+}
 
-
-
+console.log("Fuji pounds is " + fujiPounds)
+console.log("Gala pounds is " + galaPounds)
+console.log("Pink pounds is " + pinkPounds)
 
 
 // PROBLEM 6
@@ -189,11 +232,13 @@ let days = 0
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+let fujiProfit = fujiPounds * fujiPrice
+let galaProfit = galaPounds * galaPrice
+let pinkProfit = pinkPounds * pinkPrice
 
-
+console.log("Fuji profit is " + fujiProfit)
+console.log("Gala profit is " + galaProfit)
+console.log("Pink profit is " + pinkProfit)
 
 
 
@@ -209,3 +254,5 @@ let days = 0
 */
 
 // CODE HERE
+let totalProfit = fujiProfit + galaProfit + pinkProfit
+console.log("Total profit is " + totalProfit)
